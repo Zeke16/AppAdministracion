@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        @if (User.IsInRole("Admin") || User.IsInRole("RRHH"))
+        {
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewData["countDep"]</h3>
+                        <p>Departamentos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="far fa-building nav-icon"></i>
+                    </div>
+                    <a href="/Departamentos/Index" class="small-box-footer">Ir <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>@ViewData["countUser"]</h3>
+                        <p>Usuarios</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-plus nav-icon"></i>
+                    </div>
+                    <a href="/Home/Index" class="small-box-footer">Ir <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        }
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@ViewData["countSol"]</h3>
+                    <p>Solicitudes</p>
+                </div>
+                <div class="icon">
+                    <i class="far fa-file-alt nav-icon"></i>
+                </div>
+                <a href="/Solicitudes/Index" class="small-box-footer">Ir <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+

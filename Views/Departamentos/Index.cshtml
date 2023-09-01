@@ -1,0 +1,89 @@
+﻿@model IEnumerable<AppAdministracion.Models.Departamentos>
+
+@{
+    ViewData["Title"] = "Departamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mt-2">
+    <a class="btn btn-primary" asp-controller="Departamentos" asp-action="Create"><i class="fas fa-plus"></i>&nbsp; Crear nuevo departamento</a>
+</div>
+@if (Model.Count() > 0)
+{
+    <div class="card mt-2 ">
+        <div class="card-header  bg-info">
+            <h5>@ViewData["Title"]</h5>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.descripcion)
+                        </th>
+
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.id_departamento"><i class="text-warning fas fa-edit mt-2"></i></a>
+                            </td>
+                            <td>
+                                <form asp-controller="Departamentos" asp-route-id="@item.id_departamento" id="@item.id_departamento" asp-action="Delete" method="post">
+                                    <button class="btn" type="submit" asp-action="Delete" id="delete-dep" data-id="@item.id_departamento" asp-route-id="@item.id_departamento"> <i class="text-danger fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="jumbotron mt-2"><h1>No existen registros por mostrar</h1></div>
+}
+
+
+@section ScriptsDep {
+    <script>
+        let deleteRegistroDep = document.querySelectorAll("#delete-dep");
+        deleteRegistroDep.forEach((btn) => {
+            let formDep = document.getElementById(`${btn.dataset.id}`)
+            btn.addEventListener("click", (e) => {
+                e.preventDefault()
+                console.log()
+                Swal.fire({
+                    title: "Estas a punto de eliminar este registro!",
+                    text: "No puedes revertir esta decision luego!",
+                    icon: "info",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    showCancelButton: true,
+                    confirmButtonColor: "green",
+                    cancelButtonColor: "red",
+                }).then((result) => {
+                    if (result["isConfirmed"]) {
+                        formDep.submit()
+                    }
+                });
+            });
+        });
+    </script>
+}

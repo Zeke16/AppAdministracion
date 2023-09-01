@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewData["countUser"]</h3>
+                        <p>Registrar usuario</p>
+                    </div>
+                    <div class="icon">
+                        <i class="far fa-building nav-icon"></i>
+                    </div>
+                    <a href="/Identity/Account/Register" class="small-box-footer">Ir <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            
+        }
+    </div>
+</div>
+
