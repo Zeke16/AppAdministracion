@@ -1,4 +1,3 @@
-[circleci-image]: https://d585tldpucybw.cloudfront.net/sfimages/default-source/default-album/t-com_netcore_770px.png?sfvrsn=44c053c4_0
 
 # AppAdministracion
 Prueba tecnica A&amp;B pos solutions
